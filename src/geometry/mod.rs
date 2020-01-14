@@ -7,7 +7,10 @@ mod point;
 pub use self::circle::{EuclideanCircle, GeodesicCircle, Radians, Degrees};
 mod circle;
 
-pub use self::polyline::Polyline;
+pub use self::polyline::GeodesicPolyline;
 mod polyline;
 
-pub const DRAW_SCALE_FACTOR: f32 = 100.0;
+pub use self::polygon::{Polygon, PolygonType};
+mod polygon;
+
+pub const DRAW_SCALE_FACTOR: f32 = 300.0;

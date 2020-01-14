@@ -50,13 +50,21 @@ impl GeodesicLine {
         let start_angle = self.circle.angle_at_point(self.from);
         let end_angle = self.circle.angle_at_point(self.to);
 
-        let mut start = 0.0;
+        let start: f32;
+        let end: f32;
+        let fac: f32;
         match start_angle < end_angle {
-            true => start = start_angle,
-            false => start = end_angle
+            true => {
+                start = start_angle;
+                end = end_angle;
+            },
+            false => {
+                start = end_angle;
+                end = start_angle;
+            }
         };
 
-        let angle_step = (start_angle - end_angle) / 10.0;
+        let angle_step = (start - end).abs() / 10.0;
 
         let points = (0..11).map(|i| {
             let pt = self.circle.point_at_angle_radians(Radians{0:start + angle_step * (i as f32)});

@@ -28,12 +28,12 @@ impl EuclideanCircle {
         }
     }
 
-    pub fn origin(&mut self, origin: Point) -> &mut EuclideanCircle {
+    pub fn origin(mut self, origin: Point) -> EuclideanCircle {
         self.origin = origin;
         self
     }
 
-    pub fn radius(&mut self, radius: Default) -> &mut EuclideanCircle {
+    pub fn radius(mut self, radius: Default) -> EuclideanCircle {
         self.radius = radius;
         self
     }
@@ -65,7 +65,7 @@ impl EuclideanCircle {
         origin.x = (a_slope * b_slope * (a.y - c.y) + b_slope * (a.x + b.x) - a_slope * (b.x + c.x)) / (2.0 * (b_slope - a_slope));
         origin.y = -1.0 * (origin.x - (a.x + b.x) / 2.0) / a_slope + (a.y + b.y) / 2.0;
 
-        *EuclideanCircle::new()
+        EuclideanCircle::new()
             .origin(origin)
             .radius(origin.distance_to(a))
     }
